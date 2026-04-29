@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propuesta Estratégica — Porliviano</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --verde: #1c3a28;
+    --verde-medio: #2d5c3e;
+    --verde-claro: #4a8c5c;
+    --crema: #f7f2ea;
+    --crema-oscura: #ede5d6;
+    --terracota: #b85c38;
+    --terracota-claro: #d4754e;
+    --dorado: #c9974a;
+    --texto: #1a1a14;
+    --texto-suave: #4a4a3a;
+    --blanco: #ffffff;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--crema);
+    color: var(--texto);
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--verde);
+    padding: 14px 40px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo { color: var(--crema); font-family: 'Playfair Display', serif; font-size: 18px; letter-spacing: 1px; }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a { color: rgba(247,242,234,0.65); text-decoration: none; font-size: 13px; font-weight: 400; letter-spacing: 0.5px; transition: color .2s; }
+  .nav-links a:hover { color: var(--crema); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--verde);
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 120px 80px 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -100px; right: -100px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    border: 1px solid rgba(247,242,234,0.08);
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -150px; right: 100px;
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    border: 1px solid rgba(247,242,234,0.05);
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(201,151,74,0.18);
+    color: var(--dorado);
+    border: 1px solid rgba(201,151,74,0.35);
+    padding: 6px 18px;
+    border-radius: 100px;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 6vw, 74px);
+    color: var(--crema);
+    font-weight: 400;
+    line-height: 1.1;
+    max-width: 750px;
+    margin-bottom: 24px;
+  }
+  .hero h1 em { font-style: italic; color: var(--dorado); }
+  .hero-sub {
+    color: rgba(247,242,234,0.65);
+    font-size: 17px;
+    max-width: 520px;
+    margin-bottom: 56px;
+    line-height: 1.7;
+  }
+  .hero-meta {
+    display: flex; gap: 48px;
+  }
+  .hero-stat { }
+  .hero-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    color: var(--crema);
+    display: block;
+  }
+  .hero-stat-label {
+    font-size: 12px;
+    color: rgba(247,242,234,0.5);
+    letter-spacing: 0.5px;
+    display: block;
+    margin-top: 2px;
+  }
+  .hero-divider { width: 1px; background: rgba(247,242,234,0.15); }
+
+  /* SECTION BASE */
+  .section { padding: 96px 80px; }
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--terracota);
+    font-weight: 500;
+    margin-bottom: 14px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 400;
+    line-height: 1.2;
+    max-width: 620px;
+    margin-bottom: 48px;
+  }
+
+  /* DIAGNÓSTICO */
+  .diagnostico { background: var(--blanco); }
+  .diag-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1px;
+    background: var(--crema-oscura);
+    border: 1px solid var(--crema-oscura);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .diag-card {
+    background: var(--blanco);
+    padding: 36px 32px;
+  }
+  .diag-platform {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 20px;
+  }
+  .diag-icon {
+    width: 38px; height: 38px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px;
+    flex-shrink: 0;
+  }
+  .icon-ig { background: #f0e8f8; }
+  .icon-fb { background: #e8f0f8; }
+  .icon-tt { background: #f8e8e8; }
+  .icon-web { background: #e8f5ee; }
+  .diag-platform-name {
+    font-weight: 500;
+    font-size: 15px;
+  }
+  .diag-problems { margin-bottom: 20px; }
+  .diag-problems h4 {
+    font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--terracota); margin-bottom: 10px; font-weight: 500;
+  }
+  .diag-problems ul { list-style: none; }
+  .diag-problems li {
+    font-size: 13.5px;
+    color: var(--texto-suave);
+    padding: 5px 0;
+    border-bottom: 1px solid var(--crema-oscura);
+    display: flex; gap: 8px; align-items: flex-start;
+    line-height: 1.5;
+  }
+  .diag-problems li::before { content: '—'; color: var(--terracota); flex-shrink: 0; margin-top: 1px; }
+  .diag-solutions h4 {
+    font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--verde-claro); margin-bottom: 10px; font-weight: 500;
+  }
+  .diag-solutions ul { list-style: none; }
+  .diag-solutions li {
+    font-size: 13.5px;
+    color: var(--texto-suave);
+    padding: 5px 0;
+    display: flex; gap: 8px; align-items: flex-start;
+    line-height: 1.5;
+  }
+  .diag-solutions li::before { content: '✓'; color: var(--verde-claro); flex-shrink: 0; font-weight: 500; }
+
+  /* ESTRATEGIA */
+  .estrategia { background: var(--crema); }
+  .est-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+  .est-card {
+    background: var(--blanco);
+    border-radius: 16px;
+    padding: 36px 32px;
+    border: 1px solid var(--crema-oscura);
+    position: relative; overflow: hidden;
+  }
+  .est-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--verde);
+  }
+  .est-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 56px;
+    color: var(--crema-oscura);
+    line-height: 1;
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+  .est-title { font-size: 17px; font-weight: 500; margin-bottom: 12px; }
+  .est-desc { font-size: 14px; color: var(--texto-suave); line-height: 1.65; }
+
+  /* PLANES */
+  .planes { background: var(--verde); }
+  .planes .section-title { color: var(--crema); }
+  .planes .section-label { color: var(--dorado); }
+  .planes-intro {
+    color: rgba(247,242,234,0.65);
+    font-size: 16px;
+    max-width: 540px;
+    margin-bottom: 56px;
+    line-height: 1.7;
+  }
+  .planes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    align-items: start;
+  }
+  .plan-card {
+    background: rgba(247,242,234,0.06);
+    border: 1px solid rgba(247,242,234,0.12);
+    border-radius: 20px;
+    padding: 40px 36px;
+    transition: transform .3s;
+  }
+  .plan-card:hover { transform: translateY(-4px); }
+  .plan-card.featured {
+    background: var(--crema);
+    border-color: var(--crema);
+  }
+  .plan-badge {
+    display: inline-block;
+    font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 5px 14px; border-radius: 100px;
+    margin-bottom: 24px; font-weight: 500;
+  }
+  .plan-card:not(.featured) .plan-badge {
+    background: rgba(201,151,74,0.18);
+    color: var(--dorado);
+    border: 1px solid rgba(201,151,74,0.3);
+  }
+  .plan-card.featured .plan-badge {
+    background: var(--verde);
+    color: var(--crema);
+  }
+  .plan-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px; font-weight: 400;
+    margin-bottom: 4px;
+  }
+  .plan-card:not(.featured) .plan-name { color: var(--crema); }
+  .plan-card.featured .plan-name { color: var(--verde); }
+  .plan-tagline {
+    font-size: 13px;
+    margin-bottom: 28px;
+  }
+  .plan-card:not(.featured) .plan-tagline { color: rgba(247,242,234,0.5); }
+  .plan-card.featured .plan-tagline { color: var(--texto-suave); }
+  .plan-price {
+    margin-bottom: 28px;
+    padding-bottom: 28px;
+  }
+  .plan-card:not(.featured) .plan-price { border-bottom: 1px solid rgba(247,242,234,0.12); }
+  .plan-card.featured .plan-price { border-bottom: 1px solid var(--crema-oscura); }
+  .plan-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px; font-weight: 400;
+    line-height: 1;
+    display: block; margin-bottom: 4px;
+  }
+  .plan-card:not(.featured) .plan-amount { color: var(--crema); }
+  .plan-card.featured .plan-amount { color: var(--verde); }
+  .plan-period {
+    font-size: 13px;
+  }
+  .plan-card:not(.featured) .plan-period { color: rgba(247,242,234,0.4); }
+  .plan-card.featured .plan-period { color: var(--texto-suave); }
+  .plan-includes {
+    font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+    margin-bottom: 16px; font-weight: 500;
+  }
+  .plan-card:not(.featured) .plan-includes { color: rgba(247,242,234,0.4); }
+  .plan-card.featured .plan-includes { color: var(--texto-suave); }
+  .plan-features { list-style: none; }
+  .plan-features li {
+    font-size: 13.5px;
+    padding: 7px 0;
+    display: flex; gap: 10px; align-items: flex-start;
+    line-height: 1.45;
+  }
+  .plan-card:not(.featured) .plan-features li { color: rgba(247,242,234,0.8); border-bottom: 1px solid rgba(247,242,234,0.06); }
+  .plan-card.featured .plan-features li { color: var(--texto-suave); border-bottom: 1px solid var(--crema-oscura); }
+  .plan-features li::before { content: '✓'; flex-shrink: 0; font-weight: 600; font-size: 12px; margin-top: 2px; }
+  .plan-card:not(.featured) .plan-features li::before { color: var(--dorado); }
+  .plan-card.featured .plan-features li::before { color: var(--verde-claro); }
+  .plan-note {
+    margin-top: 20px;
+    font-size: 12px;
+    font-style: italic;
+    line-height: 1.5;
+  }
+  .plan-card:not(.featured) .plan-note { color: rgba(247,242,234,0.35); }
+  .plan-card.featured .plan-note { color: var(--texto-suave); opacity: .6; }
+
+  /* POR QUÉ YO */
+  .porque { background: var(--crema-oscura); }
+  .porq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+  }
+  .porq-item {
+    background: var(--blanco);
+    border-radius: 14px;
+    padding: 30px 26px;
+    border: 1px solid rgba(0,0,0,0.05);
+  }
+  .porq-icon {
+    font-size: 26px; margin-bottom: 16px;
+  }
+  .porq-title { font-weight: 500; font-size: 15px; margin-bottom: 8px; }
+  .porq-desc { font-size: 13.5px; color: var(--texto-suave); line-height: 1.6; }
+
+  /* CIERRE */
+  .cierre {
+    background: var(--terracota);
+    padding: 100px 80px;
+    text-align: center;
+  }
+  .cierre h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(30px, 4vw, 52px);
+    color: var(--crema);
+    font-weight: 400;
+    max-width: 600px;
+    margin: 0 auto 24px;
+    line-height: 1.2;
+  }
+  .cierre h2 em { font-style: italic; opacity: .8; }
+  .cierre p {
+    color: rgba(247,242,234,0.75);
+    font-size: 16px;
+    max-width: 480px;
+    margin: 0 auto 48px;
+  }
+  .cta-btn {
+    display: inline-block;
+    background: var(--crema);
+    color: var(--terracota);
+    padding: 16px 44px;
+    border-radius: 100px;
+    font-weight: 500;
+    font-size: 15px;
+    text-decoration: none;
+    letter-spacing: 0.3px;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--verde);
+    padding: 32px 80px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  footer p { color: rgba(247,242,234,0.35); font-size: 12px; }
+
+  /* COLOMBIANO */
+  .colombiano { background: var(--verde); }
+  .colombiano .section-label { color: var(--dorado); }
+  .colombiano .section-title { color: var(--crema); }
+  .col-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+  .col-desc { color: rgba(247,242,234,0.75); font-size: 16px; line-height: 1.75; }
+  .col-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+  .col-tag {
+    background: rgba(201,151,74,0.15); border: 1px solid rgba(201,151,74,0.3);
+    color: var(--dorado); padding: 8px 18px; border-radius: 100px;
+    font-size: 13px; font-weight: 400;
+  }
+  .col-quote { background: rgba(247,242,234,0.06); border-radius: 20px; padding: 36px; border: 1px solid rgba(247,242,234,0.1); }
+  .col-quote-marca { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(247,242,234,0.4); margin-bottom: 24px; }
+  .col-pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .col-pillar { background: rgba(247,242,234,0.05); border-radius: 12px; padding: 20px 18px; }
+  .col-pillar-icon { font-size: 22px; margin-bottom: 8px; }
+  .col-pillar-title { font-weight: 500; font-size: 14px; color: var(--crema); margin-bottom: 6px; }
+  .col-pillar-text { font-size: 12.5px; color: rgba(247,242,234,0.55); line-height: 1.55; }
+
+  /* MOCKUPS */
+  .mockups { background: var(--crema-oscura); }
+  .mockups-intro { color: var(--texto-suave); font-size: 16px; max-width: 520px; margin-bottom: 36px; }
+  .mock-tabs { display: flex; gap: 8px; margin-bottom: 40px; }
+  .mock-tab {
+    background: var(--blanco); border: 1px solid var(--crema-oscura);
+    color: var(--texto-suave); padding: 10px 24px; border-radius: 100px;
+    font-size: 14px; cursor: pointer; font-family: 'DM Sans', sans-serif;
+    transition: all .2s;
+  }
+  .mock-tab.active { background: var(--verde); color: var(--crema); border-color: var(--verde); }
+  .mock-panel { display: flex; gap: 56px; align-items: flex-start; }
+  .mock-caption { max-width: 340px; padding-top: 24px; }
+  .mock-caption h3 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 400; margin-bottom: 14px; }
+  .mock-caption p { font-size: 14.5px; color: var(--texto-suave); line-height: 1.7; }
+
+  /* PHONE DEVICE */
+  .phone {
+    width: 280px; flex-shrink: 0;
+    background: #1a1a1a; border-radius: 40px; padding: 12px;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.25);
+  }
+  .phone-notch { width: 80px; height: 22px; background: #1a1a1a; border-radius: 0 0 14px 14px; margin: 0 auto 4px; }
+  .phone-screen { background: #fff; border-radius: 28px; overflow: hidden; max-height: 520px; overflow-y: auto; }
+  .phone-screen::-webkit-scrollbar { display: none; }
+
+  /* LAPTOP DEVICE */
+  .laptop { width: 480px; flex-shrink: 0; }
+  .laptop-screen {
+    background: #fff; border-radius: 12px 12px 0 0;
+    border: 8px solid #2a2a2a; overflow: hidden;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+  }
+  .laptop-base {
+    background: #2a2a2a; height: 16px; border-radius: 0 0 8px 8px;
+    width: 100%;
+  }
+
+  /* INSTAGRAM MOCKUP INTERNALS */
+  .ig-header { padding: 12px; }
+  .ig-topbar { display: flex; justify-content: space-between; align-items: center; font-size: 13px; font-weight: 600; margin-bottom: 12px; }
+  .ig-arrow, .ig-menu { color: #666; font-weight: 400; }
+  .ig-profile { display: flex; align-items: center; gap: 16px; margin-bottom: 10px; }
+  .ig-avatar-wrap { width: 60px; height: 60px; border-radius: 50%; padding: 2px; background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); flex-shrink: 0; }
+  .ig-avatar { width: 100%; height: 100%; border-radius: 50%; background: #e8f5ee; display: flex; align-items: center; justify-content: center; font-size: 22px; border: 2px solid #fff; }
+  .ig-stats { display: flex; gap: 14px; flex: 1; justify-content: space-around; }
+  .ig-stat { text-align: center; display: flex; flex-direction: column; font-size: 11px; }
+  .ig-stat strong { font-size: 14px; color: #000; }
+  .ig-stat span { color: #666; }
+  .ig-bio { font-size: 11.5px; line-height: 1.5; margin-bottom: 6px; color: #222; }
+  .ig-linktree { font-size: 11px; color: #0056b3; margin-bottom: 10px; }
+  .ig-btns { display: flex; gap: 6px; margin-bottom: 14px; }
+  .ig-btn { flex: 1; padding: 6px; border-radius: 6px; border: 1px solid #ddd; background: #3a7a4a; color: #fff; font-size: 12px; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+  .ig-btn-ghost { background: #fff; color: #222; }
+  .ig-highlights { display: flex; gap: 14px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 4px; }
+  .ig-highlights::-webkit-scrollbar { display: none; }
+  .ig-hl { display: flex; flex-direction: column; align-items: center; gap: 4px; flex-shrink: 0; }
+  .ig-hl-circle { width: 52px; height: 52px; border-radius: 50%; background: #f0f0f0; display: flex; align-items: center; justify-content: center; font-size: 20px; border: 2px solid #eee; }
+  .ig-hl span { font-size: 10px; color: #333; }
+  .ig-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #eee; }
+  .ig-cell { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-size: 24px; }
+
+  /* PDF PORTFOLIO INTERNALS */
+  .pdf-doc { padding: 20px; }
+  .pdf-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid #ede5d6; }
+  .pdf-logo-area { display: flex; gap: 10px; align-items: center; }
+  .pdf-brand-mark { width: 36px; height: 36px; border-radius: 8px; background: #1c3a28; color: #f7f2ea; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 18px; }
+  .pdf-brand-name { font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 600; letter-spacing: 2px; color: #1c3a28; }
+  .pdf-brand-sub { font-size: 9px; color: #888; letter-spacing: 0.5px; }
+  .pdf-tag { font-size: 10px; background: #f0ece4; color: #5a4a2a; padding: 4px 12px; border-radius: 100px; }
+  .pdf-hero-text { margin-bottom: 24px; }
+  .pdf-hero-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 400; line-height: 1.3; color: #1c3a28; margin-bottom: 8px; }
+  .pdf-hero-desc { font-size: 11px; color: #666; line-height: 1.6; }
+  .pdf-products { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+  .pdf-product { display: flex; gap: 12px; align-items: center; background: #faf8f4; border-radius: 10px; padding: 12px; }
+  .pdf-product-img { width: 56px; height: 56px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
+  .pdf-product-name { font-weight: 500; font-size: 13px; color: #1a1a14; }
+  .pdf-product-desc { font-size: 10px; color: #888; margin: 2px 0; }
+  .pdf-product-price { font-size: 12px; color: #1c3a28; font-weight: 500; }
+  .pdf-footer-bar { display: flex; justify-content: space-between; padding-top: 12px; border-top: 1px solid #ede5d6; font-size: 9px; color: #aaa; }
+
+  /* FACEBOOK POST INTERNALS */
+  .fb-post { padding: 12px; }
+  .fb-post-header { display: flex; gap: 10px; align-items: center; margin-bottom: 12px; }
+  .fb-avatar { width: 38px; height: 38px; border-radius: 50%; background: #1c3a28; color: #f7f2ea; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 600; flex-shrink: 0; }
+  .fb-page-name { font-size: 13px; font-weight: 600; color: #1a1a14; }
+  .fb-post-time { font-size: 11px; color: #999; }
+  .fb-post-text { font-size: 12px; color: #333; line-height: 1.6; margin-bottom: 12px; white-space: pre-line; }
+  .fb-hashtags { color: #0056b3; }
+  .fb-post-image { background: #f0ece4; border-radius: 8px; height: 160px; display: flex; align-items: center; justify-content: center; flex-direction: column; margin-bottom: 8px; }
+  .fb-img-placeholder { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .fb-post-reactions { display: flex; justify-content: space-between; font-size: 11px; color: #888; padding: 6px 0; border-bottom: 1px solid #f0f0f0; margin-bottom: 4px; }
+  .fb-post-actions { display: flex; justify-content: space-around; font-size: 12px; color: #666; padding: 6px 0; }
+
+  @media (max-width: 900px) {
+    .col-layout { grid-template-columns: 1fr; gap: 40px; }
+    .mock-panel { flex-direction: column; }
+    .laptop { width: 100%; }
+  }
+
+  /* SCROLL ANIMATION */
+  .fade-in {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    .hero, .section, .cierre, footer { padding-left: 24px; padding-right: 24px; }
+    .hero-meta { flex-direction: column; gap: 24px; }
+    .hero-divider { display: none; }
+    nav { padding: 14px 24px; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">Porliviano — Propuesta</span>
+  <div class="nav-links">
+    <a href="#diagnostico">Diagnóstico</a>
+    <a href="#colombiano">Identidad</a>
+    <a href="#mockups">Ejemplos</a>
+    <a href="#planes">Planes</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Propuesta de Servicios · 2026</div>
+  <h1>Hacerle justicia a lo que se crea <em>con las manos.</em></h1>
+  <p class="hero-sub">Una estrategia de contenido, marca y presencia digital diseñada exclusivamente para Porliviano — con la atención que su trabajo artesanal merece.</p>
+  <div class="hero-meta">
+    <div class="hero-stat">
+      <span class="hero-stat-num">3</span>
+      <span class="hero-stat-label">Plataformas gestionadas</span>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">100%</span>
+      <span class="hero-stat-label">Dedicación exclusiva</span>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">3</span>
+      <span class="hero-stat-label">Planes a su medida</span>
+    </div>
+  </div>
+</section>
+
+<!-- DIAGNÓSTICO -->
+<section class="section diagnostico" id="diagnostico">
+  <p class="section-label">Lo que encontré</p>
+  <h2 class="section-title">Diagnóstico de presencia digital actual</h2>
+  <div class="diag-grid">
+
+    <div class="diag-card fade-in">
+      <div class="diag-platform">
+        <div class="diag-icon icon-ig">📸</div>
+        <span class="diag-platform-name">Instagram</span>
+      </div>
+      <div class="diag-problems">
+        <h4>Oportunidades de mejora</h4>
+        <ul>
+          <li>Sin voz de marca definida ni coherencia visual</li>
+          <li>Bio sin enlace centralizado ni llamado a acción</li>
+          <li>Contenido sin nicho claro ni narrativa de marca</li>
+        </ul>
+      </div>
+      <div class="diag-solutions">
+        <h4>Lo que propongo</h4>
+        <ul>
+          <li>Identidad regional: hecho en Colombia, con perrenque</li>
+          <li>Bio optimizada + Linktree o Carrd</li>
+          <li>Contenido emocional por fechas especiales</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="diag-card fade-in">
+      <div class="diag-platform">
+        <div class="diag-icon icon-fb">💬</div>
+        <span class="diag-platform-name">Facebook</span>
+      </div>
+      <div class="diag-problems">
+        <h4>Oportunidades de mejora</h4>
+        <ul>
+          <li>Estética del perfil sin coherencia de marca</li>
+          <li>Links no funcionales o desactualizados</li>
+          <li>Falta storytelling enfocado en el producto</li>
+        </ul>
+      </div>
+      <div class="diag-solutions">
+        <h4>Lo que propongo</h4>
+        <ul>
+          <li>Posts directos para restaurantes y decoradores</li>
+          <li>Storytelling: cómo encaja el producto en cada espacio</li>
+          <li>Tips de plantas + estética del perfil renovada</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="diag-card fade-in">
+      <div class="diag-platform">
+        <div class="diag-icon icon-tt">🎵</div>
+        <span class="diag-platform-name">TikTok</span>
+      </div>
+      <div class="diag-problems">
+        <h4>Oportunidades de mejora</h4>
+        <ul>
+          <li>Sin calendario de publicación constante</li>
+          <li>Perfil sin optimizar ni ruta de contenido</li>
+          <li>No se explota el potencial narrativo</li>
+        </ul>
+      </div>
+      <div class="diag-solutions">
+        <h4>Lo que propongo</h4>
+        <ul>
+          <li>Contenido que crea necesidad sin que se note</li>
+          <li>Historia del diseño de cada jardinera</li>
+          <li>Calendario estable, no saturado</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="diag-card fade-in">
+      <div class="diag-platform">
+        <div class="diag-icon icon-web">🌿</div>
+        <span class="diag-platform-name">Portafolio & Web</span>
+      </div>
+      <div class="diag-problems">
+        <h4>Oportunidades de mejora</h4>
+        <ul>
+          <li>Renders mal manejados, poca credibilidad visual</li>
+          <li>Información densa sin jerarquía ni respiro</li>
+          <li>No transmite la identidad de marca</li>
+        </ul>
+      </div>
+      <div class="diag-solutions">
+        <h4>Lo que propongo</h4>
+        <ul>
+          <li>Portafolio limpio en PDF con renders estratégicos</li>
+          <li>Información optimizada, sensación de exclusividad</li>
+          <li>Link centralizado con todos los canales</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ESTRATEGIA -->
+<section class="section estrategia" id="estrategia">
+  <p class="section-label">La visión</p>
+  <h2 class="section-title">Estrategia de contenido por plataforma</h2>
+  <div class="est-grid">
+
+    <div class="est-card fade-in">
+      <div class="est-num">01</div>
+      <div class="est-title">Las manos que lo hacen</div>
+      <p class="est-desc">Mostrar el proceso artesanal antioqueño: las manos que moldean, la tradición que se pasa de generación en generación. Contenido que genera orgullo y confianza en el comprador local.</p>
+    </div>
+
+    <div class="est-card fade-in">
+      <div class="est-num">02</div>
+      <div class="est-title">El estilo de vida, no el producto</div>
+      <p class="est-desc">En TikTok e Instagram no vendemos jardineras, vendemos cómo se ve tu sala, tu restaurante, tu terraza. Creamos la necesidad desde la estética. El producto es la solución.</p>
+    </div>
+
+    <div class="est-card fade-in">
+      <div class="est-num">03</div>
+      <div class="est-title">Contenido por temporadas</div>
+      <p class="est-desc">Día de madres, día de padres, amor y amistad, fin de año. Cada fecha es una oportunidad para conectar emocionalmente y generar ventas desde la historia, no desde el descuento.</p>
+    </div>
+
+    <div class="est-card fade-in">
+      <div class="est-num">04</div>
+      <div class="est-title">B2B en paralelo</div>
+      <p class="est-desc">Facebook como canal para restaurantes, hoteles boutique y tiendas de decoración. Posts directos con propuesta de valor clara para compradores de alto volumen.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- COLOMBIANO -->
+<section class="section colombiano" id="colombiano">
+  <p class="section-label">El corazón de la marca</p>
+  <h2 class="section-title">Colombiano compra colombiano.</h2>
+  <div class="col-layout">
+    <div class="col-texto">
+      <p class="col-desc">Porliviano no es solo una empresa de jardineras. Es tradición antioqueña, son manos que trabajan con amor a la tierra, es la herencia que pasa de abuelas a hijas, de campesinos a artesanos urbanos. Eso no se importa. Eso no se replica. Y eso es exactamente lo que vamos a comunicar.</p>
+      <p class="col-desc" style="margin-top: 16px;">En un mercado saturado de productos genéricos, la identidad local es el mayor diferenciador. Quien compra una jardinera Porliviano no compra cerámica — compra un pedazo de tierra colombiana.</p>
+      <div class="col-tags">
+        <span class="col-tag">🌿 Hecho en Antioquia</span>
+        <span class="col-tag">🤝 Artesanos reales</span>
+        <span class="col-tag">🇨🇴 100% colombiano</span>
+        <span class="col-tag">🏔️ Con perrenque</span>
+        <span class="col-tag">🌸 Tradición viva</span>
+      </div>
+    </div>
+    <div class="col-visual">
+      <div class="col-quote">
+        <div class="col-quote-marca">La estrategia de contenido</div>
+        <div class="col-pillars">
+          <div class="col-pillar">
+            <div class="col-pillar-icon">👐</div>
+            <div class="col-pillar-title">Las manos</div>
+            <div class="col-pillar-text">Mostramos el proceso, los artesanos, el taller. Humanizamos la marca.</div>
+          </div>
+          <div class="col-pillar">
+            <div class="col-pillar-icon">🌱</div>
+            <div class="col-pillar-title">La tierra</div>
+            <div class="col-pillar-text">Conectamos el producto con la naturaleza, las plantas, el campo antioqueño.</div>
+          </div>
+          <div class="col-pillar">
+            <div class="col-pillar-icon">🏠</div>
+            <div class="col-pillar-title">El hogar</div>
+            <div class="col-pillar-text">Mostramos el producto en contexto: salas, terrazas, restaurantes, jardines.</div>
+          </div>
+          <div class="col-pillar">
+            <div class="col-pillar-icon">❤️</div>
+            <div class="col-pillar-title">La emoción</div>
+            <div class="col-pillar-text">Fechas especiales, regalos, memorias familiares. Contenido que toca el corazón.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MOCKUPS -->
+<section class="section mockups" id="mockups">
+  <p class="section-label">Vista previa</p>
+  <h2 class="section-title">Así se verá el contenido mejorado</h2>
+  <p class="mockups-intro">Ejemplos de cómo luciría la presencia digital de Porliviano con la nueva estrategia aplicada.</p>
+
+  <div class="mock-tabs">
+    <button class="mock-tab active" onclick="showMock('instagram')">Instagram</button>
+    <button class="mock-tab" onclick="showMock('portfolio')">Portafolio</button>
+    <button class="mock-tab" onclick="showMock('facebook')">Facebook / Post</button>
+  </div>
+
+  <!-- INSTAGRAM MOCKUP -->
+  <div class="mock-panel" id="mock-instagram">
+    <div class="mock-device phone">
+      <div class="phone-notch"></div>
+      <div class="phone-screen">
+        <div class="ig-header">
+          <div class="ig-topbar">
+            <span class="ig-arrow">←</span>
+            <span class="ig-username">porliviano.co</span>
+            <span class="ig-menu">⋯</span>
+          </div>
+          <div class="ig-profile">
+            <div class="ig-avatar-wrap">
+              <div class="ig-avatar">🌿</div>
+            </div>
+            <div class="ig-stats">
+              <div class="ig-stat"><strong>48</strong><span>posts</span></div>
+              <div class="ig-stat"><strong>1.2k</strong><span>seguidores</span></div>
+              <div class="ig-stat"><strong>312</strong><span>siguiendo</span></div>
+            </div>
+          </div>
+          <div class="ig-bio">
+            <strong>Porliviano 🇨🇴</strong><br>
+            Jardineras artesanales · Hechas en Antioquia<br>
+            🏔️ Con perrenque, con amor, con tierra<br>
+            🌱 Decorá tu espacio con Colombia<br>
+            👇 Portafolio · Tienda · WhatsApp
+          </div>
+          <div class="ig-linktree">🔗 linktr.ee/porliviano</div>
+          <div class="ig-btns">
+            <button class="ig-btn">Seguir</button>
+            <button class="ig-btn ig-btn-ghost">Mensaje</button>
+          </div>
+          <div class="ig-highlights">
+            <div class="ig-hl"><div class="ig-hl-circle">🏺</div><span>Proceso</span></div>
+            <div class="ig-hl"><div class="ig-hl-circle">🌸</div><span>Jardines</span></div>
+            <div class="ig-hl"><div class="ig-hl-circle">🏠</div><span>Espacios</span></div>
+            <div class="ig-hl"><div class="ig-hl-circle">📦</div><span>Pedidos</span></div>
+          </div>
+        </div>
+        <div class="ig-grid">
+          <div class="ig-cell" style="background: #c8b89a;"><span class="ig-cell-icon">🏺</span></div>
+          <div class="ig-cell" style="background: #8aab7a;"><span class="ig-cell-icon">🌿</span></div>
+          <div class="ig-cell" style="background: #d4a97a;"><span class="ig-cell-icon">🌸</span></div>
+          <div class="ig-cell" style="background: #7a9e8a;"><span class="ig-cell-icon">👐</span></div>
+          <div class="ig-cell" style="background: #b8936a;"><span class="ig-cell-icon">🏠</span></div>
+          <div class="ig-cell" style="background: #6b8f6b;"><span class="ig-cell-icon">🇨🇴</span></div>
+          <div class="ig-cell" style="background: #c4a882;"><span class="ig-cell-icon">🌱</span></div>
+          <div class="ig-cell" style="background: #9db88a;"><span class="ig-cell-icon">🏺</span></div>
+          <div class="ig-cell" style="background: #d8b890;"><span class="ig-cell-icon">🌻</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="mock-caption">
+      <h3>Perfil de Instagram rediseñado</h3>
+      <p>Bio con identidad regional clara, enlace centralizado, highlights organizadas y feed con paleta de colores coherente: tierras, verdes naturales y ocres que evocan la artesanía colombiana.</p>
+    </div>
+  </div>
+
+  <!-- PORTFOLIO MOCKUP -->
+  <div class="mock-panel" id="mock-portfolio" style="display:none;">
+    <div class="mock-device laptop">
+      <div class="laptop-screen">
+        <div class="pdf-doc">
+          <div class="pdf-header">
+            <div class="pdf-logo-area">
+              <div class="pdf-brand-mark">P</div>
+              <div>
+                <div class="pdf-brand-name">PORLIVIANO</div>
+                <div class="pdf-brand-sub">Jardineras Artesanales · Antioquia, Colombia</div>
+              </div>
+            </div>
+            <div class="pdf-tag">Portafolio 2026</div>
+          </div>
+          <div class="pdf-hero-text">
+            <div class="pdf-hero-title">Hechas con las manos.<br>Diseñadas con el alma.</div>
+            <div class="pdf-hero-desc">Cada jardinera es única. Elaborada por artesanos antioqueños con materiales seleccionados y técnicas de generación en generación.</div>
+          </div>
+          <div class="pdf-products">
+            <div class="pdf-product">
+              <div class="pdf-product-img" style="background: linear-gradient(135deg, #c8b89a, #a0876a);">🏺</div>
+              <div class="pdf-product-info">
+                <div class="pdf-product-name">Serie Tierra</div>
+                <div class="pdf-product-desc">Arcilla natural · Acabado rústico</div>
+                <div class="pdf-product-price">Desde $85.000</div>
+              </div>
+            </div>
+            <div class="pdf-product">
+              <div class="pdf-product-img" style="background: linear-gradient(135deg, #8aab7a, #5a7a5a);">🌿</div>
+              <div class="pdf-product-info">
+                <div class="pdf-product-name">Serie Bosque</div>
+                <div class="pdf-product-desc">Cemento pigmentado · Acabado mate</div>
+                <div class="pdf-product-price">Desde $120.000</div>
+              </div>
+            </div>
+            <div class="pdf-product">
+              <div class="pdf-product-img" style="background: linear-gradient(135deg, #d4a97a, #b07040);">🌸</div>
+              <div class="pdf-product-info">
+                <div class="pdf-product-name">Serie Flora</div>
+                <div class="pdf-product-desc">Terracota fina · Edición limitada</div>
+                <div class="pdf-product-price">Desde $145.000</div>
+              </div>
+            </div>
+          </div>
+          <div class="pdf-footer-bar">
+            <span>porliviano.co</span>
+            <span>@porliviano.co</span>
+            <span>🇨🇴 Hecho en Colombia</span>
+          </div>
+        </div>
+      </div>
+      <div class="laptop-base"></div>
+    </div>
+    <div class="mock-caption">
+      <h3>Portafolio PDF rediseñado</h3>
+      <p>Diseño limpio con jerarquía clara, identidad de marca consistente, renders bien manejados con aire y espacio, y precios presentados de manera elegante que evoca exclusividad.</p>
+    </div>
+  </div>
+
+  <!-- FACEBOOK POST MOCKUP -->
+  <div class="mock-panel" id="mock-facebook" style="display:none;">
+    <div class="mock-device phone" style="max-width: 340px;">
+      <div class="phone-notch"></div>
+      <div class="phone-screen">
+        <div class="fb-post">
+          <div class="fb-post-header">
+            <div class="fb-avatar">P</div>
+            <div>
+              <div class="fb-page-name">Porliviano</div>
+              <div class="fb-post-time">Hace 2 horas · 🌍</div>
+            </div>
+          </div>
+          <div class="fb-post-text">
+            🌿 ¿Sabías que una jardinera bien ubicada puede cambiar completamente la energía de un espacio?<br><br>
+            En Porliviano llevamos más de 10 años creando piezas artesanales en Antioquia — con materiales de la región y manos colombianas que ponen el corazón en cada detalle.<br><br>
+            🏺 Perfectas para:<br>
+            ✔ Restaurantes y negocios<br>
+            ✔ Apartamentos y casas<br>
+            ✔ Regalos empresariales<br><br>
+            📦 Envíos a toda Colombia<br>
+            📲 Escríbenos al WhatsApp 👇<br><br>
+            <span class="fb-hashtags">#HechoEnColombia #ArtesaníaAntioqueña #DecoraciónHogar #Porliviano</span>
+          </div>
+          <div class="fb-post-image">
+            <div class="fb-img-placeholder">
+              <span style="font-size: 36px;">🏺</span>
+              <span style="font-size: 13px; color: #6b8f6b; margin-top: 8px;">Foto del producto en contexto</span>
+            </div>
+          </div>
+          <div class="fb-post-reactions">
+            <span>❤️ 47 reacciones</span>
+            <span>12 comentarios</span>
+          </div>
+          <div class="fb-post-actions">
+            <span>👍 Me gusta</span>
+            <span>💬 Comentar</span>
+            <span>↗ Compartir</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mock-caption">
+      <h3>Post de Facebook con storytelling</h3>
+      <p>Texto directo con propuesta de valor clara para compradores B2B y personas naturales. Incluye hashtags estratégicos, llamado a la acción y énfasis en el origen colombiano del producto.</p>
+    </div>
+  </div>
+
+</section>
+
+<!-- COLOMBIANO -->
+<section class="section planes" id="planes">
+  <p class="section-label">Inversión</p>
+  <h2 class="section-title">Planes de trabajo</h2>
+  <p class="planes-intro">Tres niveles de colaboración diseñados para crecer juntos. Se empieza desde donde se puede y se escala según los resultados.</p>
+
+  <div class="planes-grid">
+
+    <!-- TIER 1 -->
+    <div class="plan-card fade-in">
+      <div class="plan-badge">Plan Semilla</div>
+      <div class="plan-name">Presencia Activa</div>
+      <div class="plan-tagline">Gestión completa de redes sociales</div>
+      <div class="plan-price">
+        <span class="plan-amount">$600k</span>
+        <span class="plan-period">pesos colombianos / mes</span>
+      </div>
+      <p class="plan-includes">incluye</p>
+      <ul class="plan-features">
+        <li>Gestión de Instagram, Facebook y TikTok</li>
+        <li>Creación de contenido mensual (fotos y videos)</li>
+        <li>1 día de grabación al mes (en instalaciones)</li>
+        <li>Diseño de piezas gráficas (Canva Pro)</li>
+        <li>Respuesta a comentarios y mensajes directos</li>
+        <li>Manejo de pautas y promoción de publicaciones</li>
+        <li>Calendario editorial mensual</li>
+        <li>Reporte mensual de resultados</li>
+      </ul>
+      <p class="plan-note">Atención exclusiva a Porliviano. Sin compartir tiempo con otras cuentas.</p>
+    </div>
+
+    <!-- TIER 2 - FEATURED -->
+    <div class="plan-card featured fade-in">
+      <div class="plan-badge">Plan Raíz · Recomendado</div>
+      <div class="plan-name">Crecimiento Digital</div>
+      <div class="plan-tagline">Redes + presencia web y portafolio</div>
+      <div class="plan-price">
+        <span class="plan-amount">$850k</span>
+        <span class="plan-period">pesos colombianos / mes</span>
+      </div>
+      <p class="plan-includes">todo lo del Plan Semilla, más:</p>
+      <ul class="plan-features">
+        <li>Rediseño y actualización del portafolio en PDF</li>
+        <li>Actualización de contenido en página web</li>
+        <li>Creación o mejora de Linktree / Carrd centralizado</li>
+        <li>Optimización básica de SEO (títulos, descripciones, alt text)</li>
+        <li>Estrategia SEM básica (Google Ads o Meta Ads)</li>
+        <li>Mejora de bio y estética en todos los perfiles</li>
+        <li>2 reportes de análisis al mes</li>
+      </ul>
+      <p class="plan-note">Ideal para empresas que quieren crecer online sin depender de terceros para cada actualización.</p>
+    </div>
+
+    <!-- TIER 3 -->
+    <div class="plan-card fade-in">
+      <div class="plan-badge">Plan Florece</div>
+      <div class="plan-name">Transformación Web</div>
+      <div class="plan-tagline">E-commerce + mantenimiento mensual</div>
+      <div class="plan-price">
+        <span class="plan-amount">$2M</span>
+        <span class="plan-period">pago único de desarrollo</span>
+      </div>
+      <p class="plan-includes">desarrollo incluye</p>
+      <ul class="plan-features">
+        <li>Habilitación de carrito de compras en la web</li>
+        <li>Configuración de pasarela de pago (PSE / tarjeta)</li>
+        <li>Carga inicial del catálogo de productos</li>
+        <li>Integración con redes sociales (Instagram Shopping)</li>
+        <li>Página optimizada para conversión</li>
+      </ul>
+      <p class="plan-includes" style="margin-top: 16px;">mantenimiento mensual · $650k/mes</p>
+      <ul class="plan-features">
+        <li>Monitoreo del sitio y uptime</li>
+        <li>Actualización de productos y precios</li>
+        <li>Gestión de pedidos y notificaciones</li>
+        <li>Todo lo del Plan Raíz incluido</li>
+      </ul>
+      <p class="plan-note">El desarrollo es una inversión única. El mantenimiento garantiza que todo funcione siempre.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- POR QUÉ YO -->
+<section class="section porque" id="porque">
+  <p class="section-label">Lo que me diferencia</p>
+  <h2 class="section-title">Por qué trabajar conmigo</h2>
+  <div class="porq-grid">
+    <div class="porq-item fade-in">
+      <div class="porq-icon">🎯</div>
+      <div class="porq-title">Dedicación exclusiva</div>
+      <p class="porq-desc">No atiendo 10 marcas a la vez. Porliviano tiene mi atención completa, con contexto real de la empresa.</p>
+    </div>
+    <div class="porq-item fade-in">
+      <div class="porq-icon">📍</div>
+      <div class="porq-title">Raíz local</div>
+      <p class="porq-desc">Entiendo el regionalismo antioqueño, el orgullo de lo hecho acá y cómo comunicarlo con autenticidad.</p>
+    </div>
+    <div class="porq-item fade-in">
+      <div class="porq-icon">📈</div>
+      <div class="porq-title">Resultados medibles</div>
+      <p class="porq-desc">Reportes claros cada mes. Se puede ver qué funcionó, qué no, y cómo mejoramos el siguiente mes.</p>
+    </div>
+    <div class="porq-item fade-in">
+      <div class="porq-icon">🌱</div>
+      <div class="porq-title">Escalabilidad</div>
+      <p class="porq-desc">Se empieza desde donde sea cómodo y se crece. No hay que comprometerse con todo desde el primer día.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CIERRE -->
+<section class="cierre">
+  <h2>Es hora de que el trabajo se vea tan bien como <em>se siente.</em></h2>
+  <p>Porliviano merece una presencia digital a la altura de lo que crea. Empecemos.</p>
+  <a href="mailto:contacto@ejemplo.com" class="cta-btn">Hablemos</a>
+</section>
+
+<footer>
+  <p>Propuesta elaborada 2026 — Porliviano</p>
+  <p>Confidencial · Uso interno</p>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+  function showMock(id) {
+    document.querySelectorAll('.mock-panel').forEach(p => p.style.display = 'none');
+    document.querySelectorAll('.mock-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('mock-' + id).style.display = 'flex';
+    event.target.classList.add('active');
+  }
+</script>
+
+</body>
+</html>
